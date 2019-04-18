@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: 62.5%;
+    }
+    body {
+      font-size: 1.6rem;
+    }
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #373A37;
+    }
+    .button {
+      position: relative;
+      font-size: 3rem;
+      padding: .5rem 4rem;
+      background-color: pink;
+      cursor: pointer;
+      border: 0;
+    }
+    .button::before,
+    .button::after {
+      content: "";
+      position: absolute;
+      width: 15%;
+      transition: width .3s;
+    }
+    .button::before {
+      top: -0.5rem;
+      left: 0;
+      border-top: .2rem solid pink;
+    }
+    .button::after {
+      bottom: -0.5rem;
+      right: 0;
+      border-bottom: .2rem solid pink;
+    }
+    .button:hover::before,
+    .button:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <button class="button">提 交</button>
+  </div>
+</body>
+</html>
