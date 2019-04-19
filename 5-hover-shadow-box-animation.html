@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: 62.5%;
+    }
+    body {
+      font-size: 1.6rem;
+    }
+    .wrapper {
+      background-color: #F7EAEF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .button {
+      /* border: 1px solid black; */
+      box-shadow: 0 0 1px transparent;
+      /* box-shadow: 1px 10px 10px -10px rgba(0, 0, 24, 0.5); */
+      padding: .2rem .5rem;
+      transition: transform .3s, box-shadow .3s;
+      transform: translateZ(0);
+    }
+    .button:hover {
+      transform: scale(1.1);
+      box-shadow: 1px 10px 10px -10px rgba(0, 0, 24, 0.4);
+
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="button">Hover me !</div>
+  </div>
+</body>
+</html>

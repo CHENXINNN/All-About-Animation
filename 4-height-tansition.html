@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: 62.5%;
+    }
+    body {
+      font-size: 1.6rem;
+    }
+    .wrapper {
+      background-color: lightblue;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+    }
+    .trigger {
+      background-color: pink;
+      margin-top: 5rem;
+      padding: 1rem;
+      border-radius: .5rem;
+      width: 400px;
+    }
+    .trigger:hover .content{
+      height: var(--height);
+    }
+    .content {
+      height: 0;
+      overflow: hidden;
+      transition: height .3s;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="trigger">
+        Hover me to see a height transition.
+      <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus deserunt voluptatibus fugit vitae libero neque magni eius, iure cum porro quaerat nesciunt rem amet, eligendi, accusamus quidem quas minus laudantium?</div>
+    </div>
+  </div>
+  <script>
+    const content = document.querySelector('.content');
+    const height = content.scrollHeight;
+    content.style.setProperty('--height', height + 'px');
+  </script>
+</body>
+</html>

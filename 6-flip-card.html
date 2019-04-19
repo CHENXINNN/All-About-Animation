@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: 62.5%;
+    }
+    body {
+      font-size: 1.6rem;
+      background-color: lightblue;
+    }
+    .scene {
+      width: 20rem;
+      height: 26rem;
+      border: 1px solid gray;
+      margin: 4rem auto;
+      perspective: 80rem;
+    }
+    .card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform .6s;
+      transform: translateZ(0);
+      transform-style: preserve-3d;
+    }
+    .card_face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      line-height: 26rem;
+      text-align: center;
+      font-size: 4rem;
+      font-weight: bold;
+      backface-visibility: hidden;
+    }
+    .front {
+      background-color: black;
+      color: #CE0600;
+    }
+    .back {
+      background-color: #CE0600;
+      color: black;
+      transform: rotateY(180deg);
+    }
+
+    .card:hover {
+      transform: rotateY(180deg);
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="card">
+      <div class="card_face front">FRONT</div>
+      <div class="card_face back">BACK</div>
+    </div>
+    <p>Hover to flip the card</p>
+  </div>
+</body>
+</html>
