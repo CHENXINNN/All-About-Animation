@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: black;
+      color: white;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .container {
+      position: absolute;
+      width: 100vw;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20vw;
+      text-align: center;
+      
+      --color: #EB509E;
+      text-shadow: 0 0 0.08em var(--color);
+    }
+
+
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="p">P</span>
+    <span class="o">O</span>
+    <span class="s">S</span>
+    <span class="e">E</span>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+  <script>
+    const color = '#EB509E';
+    const tl = new TimelineMax();
+    tl.to('.container', 1, {textShadow: '0 0 0.08em #EB509E'});
+  </script>
+</body>
+</html>

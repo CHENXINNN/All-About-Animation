@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      display: block;
+      width: 800px;
+      height: 600px;
+      margin: 0 auto;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <img data-src="https://source.unsplash.com/random?1/800x600" >
+  <img data-src="https://source.unsplash.com/random?2/800x600" >
+  <img data-src="https://source.unsplash.com/random?3/800x600" >
+  <img data-src="https://source.unsplash.com/random?4/800x600" >
+  <img data-src="https://source.unsplash.com/random?5/800x600" >
+  <img data-src="https://source.unsplash.com/random?6/800x600" >
+  <img data-src="https://source.unsplash.com/random?7/800x600" >
+  <img data-src="https://source.unsplash.com/random?8/800x600" >
+  <img data-src="https://source.unsplash.com/random?9/800x600" >
+  <img data-src="https://source.unsplash.com/random?10/800x600" >
+  <img data-src="https://source.unsplash.com/random?11/800x600" >
+  <img data-src="https://source.unsplash.com/random?12/800x600" >
+  <img data-src="https://source.unsplash.com/random?13/800x600" >
+  <script>
+    const imgs = document.querySelectorAll('img');
+
+    window.addEventListener('scroll', throttle(lazyload, 500));
+    window.addEventListener('load', lazyload);
+    // document.addEventListener('scroll', read);
+
+    // function read() {
+    //   console.log('innerheight' + window.innerHeight)
+    //   console.log('screenTop' + window.pageYOffset)
+    // }
+
+    function lazyload() {
+      imgs.forEach((img) => {
+        if (img.offsetTop  < window.innerHeight + window.pageYOffset) {
+          img.src = img.dataset.src;
+        }
+      })
+    }
+
+    function throttle(fn, wait) {
+      let previous = 0;
+      return function cb() {
+          const now = + new Date();
+          if (now - previous > wait) {
+              fn.apply(this, arguments);
+              previous = now;
+          }
+      }
+    }
+  </script>
+</body>
+</html>
