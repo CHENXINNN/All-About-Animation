@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  /* 
+  mix-blend-mode property is not supported in IE, Edge so far 
+  */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background-color: hsl(0, 0%, 0%);
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .text-effect {
+    --left-color: red;
+    --right-color: blue;
+    position: relative;
+    overflow: hidden;
+  }
+  .neon {
+    position: relative;
+    color: transparent;
+    background-color: hsl(0, 0%, 0%);
+    font-size: 20vw;
+  }
+  .neon::before,
+  .neon::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    right: 0;
+    color: #fff;
+    filter: blur(0.02em)
+  }
+  .neon::after {
+    mix-blend-mode: difference;
+  }
+  .gradient,
+  .spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
+  .gradient {
+    background-image: 
+      linear-gradient(45deg, var(--left-color), var(--right-color));
+    
+    mix-blend-mode: multiply;
+  }
+  .spotlight {
+    background: 
+    radial-gradient(circle, white, transparent 25%) 0 0 / 25% 25%, 
+    radial-gradient(circle, white, black 25%) 50% 50% / 12.5% 12.5%;
+    top: -100%;
+    left: -100%;
+    mix-blend-mode: color-dodge;
+    animation: light 5s linear infinite;
+  }
+  @keyframes light {
+    to {
+      transform: translate3d(50%, 50%, 0)
+    }
+  }
+</style>
+<body>
+  <div class="text-effect">
+    <h1 class="neon" data-text="霓 虹" contenteditable>霓 虹</h1>
+    <div class="gradient"></div>
+    <div class="spotlight"></div>
+  </div>
+</body>
+</html>
