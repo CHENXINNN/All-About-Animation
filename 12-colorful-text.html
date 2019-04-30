@@ -6,13 +6,47 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    wrap {}
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .wrap {
+      background-color: hsl(0, 0%, 20%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    a {
+      display: block;
+      margin: 8vh 0;
+      text-decoration: none;
+      font-size: 10vh;
+      font-weight: bold;
+      background-color: pink;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      /* fallback text color*/
+      color: black;
+    }
+    a.ocean {
+      background-image: linear-gradient(to bottom, #65c7f7, #0052d4);
+
+    }
+    a.forest {
+      background-image: linear-gradient(to right, #38ef7d, #11998e)
+    }
+    a.flare {
+      background-image: linear-gradient(to bottom, #f5af19, #f12711)
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="link-background">
-      <a>海 洋</a>
+      <a class="ocean" href="#">海 洋</a>
+      <a class="forest" href="#">森 林</a>
+      <a class="flare" href="#">火 焰</a>
     </div>
   </div>
 </body>

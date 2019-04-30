@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .wrap {
+      background-color: hsl(0, 0%,100%);
+      display: flex;
+      min-height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+    a {
+      text-decoration: none;
+    }
+    .colorful {
+      position: relative;
+      font-size: 20vh;
+      font-weight: bold;
+      color: #000;
+      background-color: #fff;
+      mix-blend-mode: multiply;
+    }
+    .colorful::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to right,#23966c, #faaa54, #e23b4a, #db0768, #360670);
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="colorful" href="#">色 彩</a>
+  </div>
+</body>
+</html>

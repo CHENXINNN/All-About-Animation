@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+    .wrap {
+      --size: 15vw;
+      display: flex;
+      min-height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background-color: hsl(0, 0%, 90%);
+    }
+    .keyboard {
+      overflow: hidden;
+      width: calc(var(--size) * 1.15);
+      height: calc(var(--size) * 1.15);
+      margin-left: -1.2vw;
+    }
+    .button {
+      position: relative;
+      display: inline-block;
+      width: var(--size);
+      height: var(--size);
+      font-size: 6vw;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: .8;
+      padding: 1.2vw;
+      background-color: var(--color);
+      border: .1em solid #000;
+      transition: transform .2s;
+      cursor: pointer;
+    }
+    .button.pressed {
+      transform: translate(5%, 5%);
+    }
+    .button::before,
+    .button::after {
+      content: '';
+      position: absolute;
+      width: var(--size);
+      height: var(--size);
+      background-color: var(--color);
+      border: .1em solid #000;
+      -webkit-filter: brightness(75%);
+      filter: brightness(75%);
+      transform-origin: 0 0;
+    }
+    .button::before {
+      top: -.1em;
+      left: calc(100% + .1em - 1px);
+      transform: rotateY(80deg) skew(0,10deg);
+    }
+    .button::after {
+      top: calc(100% + .1em - 1px);
+      left: -.1em;
+      transform: rotateX(80deg) skew(10deg, 0)
+    }
+    .keyboard:nth-child(5n+1) {
+      --color: #e3344d;
+    }
+    .keyboard:nth-child(5n+2) {
+      --color: #f4713c;
+    }
+    .keyboard:nth-child(5n+3) {
+      --color: #fbae38;
+    }
+    .keyboard:nth-child(5n+4) {
+      --color: #71be51;
+    }
+    .keyboard:nth-child(5n+5) {
+      --color: #0096d3;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="keyboard">
+      <div class="button">A</div>
+    </div>
+
+    <div class="keyboard">
+      <div class="button">S</div>
+    </div>
+
+    <div class="keyboard">
+      <div class="button">D</div>
+    </div>
+
+    <div class="keyboard">
+      <div class="button">F</div>
+    </div>
+
+    <div class="keyboard">
+      <div class="button">G</div>
+    </div>
+  </div>
+  <script>
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(button => {
+      //mouse event
+      button.addEventListener('mousedown', pressButton);
+      button.addEventListener('mouseup', releaseButton);
+      button.addEventListener('mouseout', releaseButton);
+      //mobile event
+      button.addEventListener('touchstart', pressButton);
+      button.addEventListener('touchend', releaseButton);
+    });
+    
+    function pressButton(e) {
+      e.target.classList.add('pressed')
+    }
+    
+    function releaseButton(e) {
+      e.target.classList.remove('pressed')
+    }
+  </script>
+</body>
+</html>
