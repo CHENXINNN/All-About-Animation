@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .line {
+      position: relative;
+      overflow: hidden;
+      height: 80px;
+    }
+    .line:nth-child(odd) {
+      transform: skew(60deg, -30deg) scaleY(0.667);
+    }
+    .line:nth-child(even) {
+      transform: skew(0deg, -30deg) scaleY(1.33)
+    }
+    .line:nth-child(2) {
+      left: 46px;
+    }
+    .cube {
+      height: 80px;
+      transition: transform 3s;
+      font-size: 85px;
+      line-height: 80px;
+    }
+    .cube1 {
+      background-color: pink;
+    }
+    .cube2 {
+      background-color: red;
+    }
+    .cube3 {
+      background-color: skyblue;
+    }
+    .cube4 {
+      background-color: steelblue;
+    }
+    .wrap:hover .line .cube{
+      transform: translateY(-80px);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="line">
+      <div class="cube cube1"></div>
+      <div class="cube cube2">Hello</div>
+    </div>
+    <div class="line">
+      <div class="cube cube3">Hello</div>
+      <div class="cube cube4"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+  }
+  .debug {
+    position: fixed;
+    z-index: 999;
+  }
+  .parallax {
+    perspective: 300px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .parallax__group {
+    position: relative;
+    height: 100vh;
+    transform-style: preserve-3d;
+    transition: transform .5s;
+    /* transform: translate3d(400px, 0, -1200px) rotateY(45deg); */
+
+  }
+  .debug-on .parallax__group {
+    transform: translate3d(400px, 0, -1200px) rotateY(45deg);
+  }
+  .debug-on .parallax__layer {
+    box-shadow: 0 0 0 2px #000;
+    opacity: .9;
+  }
+  .parallax__layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .parallax__layer--base {
+    transform: translateZ(0);
+  }
+  .parallax__layer--back {
+    transform: translateZ(-300px) scale(2);
+    background: center center / cover;
+  }
+  .group1 .parallax__layer--back {
+    background-image: url('https://cdn.nlark.com/yuque/0/2019/jpeg/243770/1559110795269-assets/web-upload/fe8e2429-155f-47b8-9e84-a70fdcc66979.jpeg');
+  }
+  .group3 .parallax__layer--back {
+    background-image: url('https://cdn.nlark.com/yuque/0/2019/jpeg/243770/1559110794627-assets/web-upload/ce571403-3da5-4690-89d6-8ea0f29f7174.jpeg');
+  }
+  .group5 .parallax__layer--back {
+    background-image: url('https://cdn.nlark.com/yuque/0/2019/jpeg/243770/1559110792233-assets/web-upload/aae5fa8f-12e8-4151-be7c-a67918aeb431.jpeg')
+  }
+  .group2 .parallax__layer--base,
+  .group4 .parallax__layer--base, 
+  .group6 .parallax__layer--base {
+    background: white;
+  }
+  .group2, .group4, .group6 {
+    z-index: 1;
+  }
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  </style>
+</head>
+<body>
+  <div class="debug">
+    <label><input type="checkbox"></label>
+  </div>
+
+  <div class="parallax">
+
+    <div class="parallax__group group1">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+
+    <div class="parallax__group group2">
+      <div class="parallax__layer parallax__layer--base">
+        <div class="text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+        </div>
+      </div>
+    </div>
+
+    <div class="parallax__group group3">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+
+    <div class="parallax__group group4">
+      <div class="parallax__layer parallax__layer--base">
+        <div class="text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+        </div>
+      </div>
+    </div>
+
+    <div class="parallax__group group5">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+
+    <div class="parallax__group group6">
+      <div class="parallax__layer parallax__layer--base">
+        <div class="text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    var debugInput = document.querySelector("input");
+    function updateDebugState() {
+        document.body.classList.toggle('debug-on', debugInput.checked);
+    }
+    debugInput.addEventListener("click", updateDebugState);
+  </script>
+</body>
+</html>

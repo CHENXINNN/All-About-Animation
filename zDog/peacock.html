@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<canvas class="zdog-canvas"></canvas>
+<script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+<script>
+function deg(deg) {
+  return deg / 180 * Math.PI;
+}
+
+const bluel = '#35B9FC';
+const blue = '#00A6FC';
+const blued = '#0971E8';
+
+let scene = new Zdog.Illustration({
+  element: '.zdog-canvas',
+  dragRotate: true,
+  resize: 'fullscreen',
+  zoom: 1,
+  translate: {y: 140},
+  // onResize: function( width, height ) {
+  //   // scale zoom
+  //   let minSize = Math.min( width, height );
+  //   this.zoom = minSize / 250;
+  // },
+});
+let body = new Zdog.Box({
+  addTo: scene,
+  width: 60,
+  height: 60,
+  depth: 100,
+  stroke: false,
+  leftFace: blued,
+  rightFace: blued,
+  topFace: blue,
+  bottomFace: blue,
+  frontFace: bluel,
+  rearFace: bluel,
+});
+
+var tailGroup = new Zdog.Group({
+  addTo: body,
+});
+
+
+const tails = {};
+function createTails() {
+  let i = 1;
+  for (let rz=-100; rz<=100; rz+=10) {
+    tails['tail'+i] = new Zdog.Shape({
+      addTo: tailGroup,
+      path: [
+        { y: -5 },
+        { y: -320 },
+      ],
+      stroke: 1,
+      color: 'gray',
+      translate: {y: -15, z: -80},
+      rotate: {z: deg(rz)}
+    });
+    i++;
+  }
+}
+createTails();
+console.log(tails.tail11);
+
+var patternGroup = new Zdog.Group({
+  addTo: tails['tail11'],
+});
+
+// new Zdog.Shape({
+//   addTo: tails['tail1'],
+//   path: [
+//     {"x":316.5,"y":125.5},
+//     {"bezier":[{"x":270,"y":141.5},{"x":245.5,"y":182.5},{"x":245.5,"y":228.5}]},
+//     {"bezier":[{"x":245.5,"y":276.5},{"x":276.75,"y":316.14},{"x":316.5,"y":330.5}]},
+//     {"bezier":[{"x":357,"y":318.5},{"x":386.5,"y":275.5},{"x":386.5,"y":228.5}]},
+//     {"bezier":[{"x":386.5,"y":183.5},{"x":362,"y":139.5},{"x":316.5,"y":125.5}]},
+//   ],
+//   closed: false,
+//   stroke: 1,
+//   scale: 0.1,
+//   color: '#636'
+// });
+
+function render() {
+  scene.updateRenderGraph();
+  requestAnimationFrame(render);
+}
+render();
+</script>
+</body>
+</html>

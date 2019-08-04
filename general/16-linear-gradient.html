@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: steelblue;
+      width: 100vw;
+      height: 100vh;
+      display: table;
+      text-align: center;
+    }
+    .box {
+      display: table-cell;
+      font-size: 40px;
+      vertical-align: middle;
+    }
+    span {
+      line-height: 1.2;
+      background-image: linear-gradient(
+        rgba(255,255,255,0) 95%,
+        black 95%
+      );
+      background-size: 0% 100%;
+      background-repeat: no-repeat;  /* Essential for animation work */
+      transition: .2s linear;
+    }
+    span:hover{
+      background-size: 100% 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <span>Apple</span>
+  </div>
+</body>
+</html>

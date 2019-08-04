@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+body {
+  margin: 0;
+}
+#c {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
+<script src="https://unpkg.com/three@0.105.2/examples/js/controls/OrbitControls.js"></script>    
+
+<script id="fragmentShader" type="x-shader/x-fragment">
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st.x *= u_resolution.x/u_resolution.y;
+
+    vec3 color = vec3(0.);
+    color = vec3(st.x,st.y,abs(sin(u_time)));
+
+    gl_FragColor = vec4(color,1.0);
+}
+</script>
+<script>
+
+'use strict';
+
+/* global THREE */
+
+function main() {
+  const canvas = document.querySelector('#c');
+  const renderer = new THREE.WebGLRenderer({canvas});
+  renderer.autoClearColor = false;
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.OrthographicCamera(
+    -1, // left
+     1, // right
+     1, // top
+    -1, // bottom
+    -1, // near,
+     1, // far
+  );
+  camera.position.z = 0;
+
+  const plane = new THREE.PlaneBufferGeometry(2, 2);
+
+  const uniforms = {
+    u_time: { value: 0 },
+    u_resolution:  { value: new THREE.Vector3() },
+  };
+  const material = new THREE.ShaderMaterial({
+    uniforms,
+    fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+  });
+  scene.add(new THREE.Mesh(plane, material));
+
+  function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+      renderer.setSize(width, height, false);
+    }
+    return needResize;
+  }
+
+  function render(time) {
+    time *= 0.001;
+    resizeRendererToDisplaySize(renderer);
+
+    const canvas = renderer.domElement;
+    uniforms.u_resolution.value.set(canvas.width, canvas.height, 1);
+    uniforms.u_time.value = time;
+
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+
+main();
+
+</script>
+</body>
+</html>

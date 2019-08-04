@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+  background-color:black;
+  overflow: hidden;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.container{
+  position:absolute;
+  max-width:100%;
+  height:600px;
+}
+
+svg{
+  max-width:100%;
+  visibility:hidden;
+ 
+}
+
+.flameGroup{
+  mix-blend-mode:screen;
+}
+  </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In  -->
+       <svg version="1.1"
+          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+          x="0px" y="0px" width="600px" height="600px" viewBox="0 0 600 600" enable-background="new 0 0 600 600" xml:space="preserve">
+       <defs>
+        <filter id="goo" color-interpolation-filters="sRGB">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="cm" />
+        </filter>  
+       <!-- <radialGradient id="bgGrad" cx="350" cy="312" r="150" gradientUnits="userSpaceOnUse">
+       
+         <stop  offset="1.899808e-002" style="stop-color:#4C587A"/>
+         <stop  offset="5.148149e-002" style="stop-color:#7D8090"/>
+         <stop  offset="8.377692e-002" style="stop-color:#A5A2A3"/>
+         <stop  offset="0.1153" style="stop-color:#C5BBB1"/>
+         <stop  offset="0.1457" style="stop-color:#DBCEBC"/>
+         <stop  offset="0.1747" style="stop-color:#E8D9C2"/>
+         <stop  offset="0.2006" style="stop-color:#EDDDC4"/>
+         <stop  offset="0.2603" style="stop-color:#EFE1CB"/>
+         <stop  offset="0.3462" style="stop-color:#F5ECDE"/>
+         <stop  offset="0.4477" style="stop-color:#FEFEFD"/>
+         <stop  offset="0.4531" style="stop-color:#FFFFFF"/>
+         <stop  offset="0.4902" style="stop-color:#FEF3DD"/>
+         <stop  offset="0.5714" style="stop-color:#FAD488"/>
+         <stop  offset="0.6375" style="stop-color:#F7B93F"/>
+         <stop  offset="0.767" style="stop-color:#F6B431"/>
+         <stop  offset="0.9223" style="stop-color:#B42213"/>
+       </radialGradient>   -->
+       <!-- <radialGradient id="grad" cx="3" cy="3" r="6" gradientUnits="userSpaceOnUse">
+         <stop  offset="0" style="stop-color:#B42213"/>
+         <stop  offset="0.4" style="stop-color:#334673"/>
+         <stop  offset="0.6" style="stop-color:#EDDDC4"/>
+         <stop  offset="0.9" style="stop-color:#FEE8C7"/>
+         <stop  offset="1" style="stop-color:#FA8E5F"/>
+       </radialGradient> -->
+       <path id="dot" fill="pink" d="M303,300c0,1.7-1.3,3-3,3s-3-1.3-3-3s1.3-3,3-3S303,298.3,303,300z"/>
+         
+           <!-- <filter id="glow" x="-150%" y="-150%" width="280%" height="280%">
+             <feOffset result="offOut" in="SourceGraphic" dx="0" dy="0" />
+             <feGaussianBlur in="offOut" stdDeviation="16" result="blur" />
+       
+             <feComponentTransfer>
+                <feFuncR type="discrete" tableValues="0.8"/>
+                <feFuncG type="discrete" tableValues="0.3"/>
+                <feFuncB type="discrete" tableValues="0.2"/>
+             </feComponentTransfer>
+       
+           <feComposite in="SourceGraphic" operator="over" />
+       
+           </filter>   -->
+       </defs>
+       <!-- <radialGradient id="glowBgGrad" cx="300" cy="299" r="250.5421" gradientUnits="userSpaceOnUse">
+         <stop  offset="2.265372e-002" style="stop-color:#F7B93F"/>
+         <stop  offset="0.8188" style="stop-color:#000000"/>
+       </radialGradient> -->
+       <!-- <rect id="glowBg" fill="url(#glowBgGrad)" width="600" height="600"/>   -->
+       <!-- <g id="matchGroup">
+         <linearGradient id="matchSideGrad" gradientUnits="userSpaceOnUse" x1="0.5" y1="352.2917" x2="366.5782" y2="352.2917">
+           <stop  offset="0" style="stop-color:#1F1A08"/>
+           <stop  offset="9.211917e-002" style="stop-color:#26200A"/>
+           <stop  offset="0.2241" style="stop-color:#39300E"/>
+           <stop  offset="0.3803" style="stop-color:#584A16"/>
+           <stop  offset="0.5535" style="stop-color:#836E20"/>
+           <stop  offset="0.6408" style="stop-color:#9B8226"/>
+         </linearGradient>
+         <path class="matchSide" fill="url(#matchSideGrad)" d="M0.5,388.1l277.2-68.2c0,0,8.3-0.7,12.7-1c4.3-0.3,13-4.4,13-4.4h7.7c0,0,9-0.9,10.3-2.6
+           c1.3-1.7,4.3-4.1,6.7-5.8l6.7-3.5c0,0,4.7-3.3,9.3-4.3s10-1,12,0s6.7,2,8,4.3c1.3,2.3,3.7,7.3,2,9c-1.7,1.7-2.3,4-5.3,5
+           c-1.7,2-3.7,3.7-7,4.3c-2,1.3-8.3,2.3-9.3,2s-9.3,1.7-10.3,0.7s-5-2-8.7,0c-3.7,2-13.7,4-17.7,5s-14,3-18,5.3s-12.3,4.3-16.7,6
+           s-7.3,3-15,4.7C250.3,346.3,0.5,407,0.5,407V388.1z"/>
+         <path class="matchTop" fill="#CE650A" d="M0.5,388.1l277.2-68.2c0,0,8.3-0.7,12.7-1c4.3-0.3,13-4.4,13-4.4h7.7c0,0,9-0.9,10.3-2.6
+           c1.3-1.7,4.3-4.1,6.7-5.8l6.7-3.5c0,0,4.7-3.3,9.3-4.3s10-1,12,0s6.7,2,8,4.3c1.3,2.3,3.7,7.3,2,9c-1.7,1.7-2.3,4-5.3,5
+           c-1.7,2-3.7,3.7-7,4.3c-2,1.3-8.3,2.3-9.3,2s-9.3,1.7-10.3,0.7s-5-2-8.7,0c-3.7,2-53.7,5.7-61.3,7.3S0.5,395.5,0.5,395.5V388.1z"/>
+         <radialGradient id="matchGrad" cx="291.5" cy="324.0106" r="65.4059" gradientUnits="userSpaceOnUse">
+           <stop  offset="3.236246e-003" style="stop-color:#CE650A;stop-opacity:0.5"/>
+           <stop  offset="6.137786e-002" style="stop-color:#A35715;stop-opacity:0.5"/>
+           <stop  offset="0.1246" style="stop-color:#7B4A20;stop-opacity:0.5"/>
+           <stop  offset="0.187" style="stop-color:#5B4028;stop-opacity:0.5"/>
+           <stop  offset="0.2473" style="stop-color:#45392E;stop-opacity:0.5"/>
+           <stop  offset="0.3046" style="stop-color:#383432;stop-opacity:0.5"/>
+           <stop  offset="0.356" style="stop-color:#333333;stop-opacity:0.5"/>
+           <stop  offset="0.5744" style="stop-color:#3A3A3A;stop-opacity:0.8242"/>
+           <stop  offset="0.6375" style="stop-color:#3D3D3D;stop-opacity:0.918"/>
+           <stop  offset="0.9223" style="stop-color:#000000"/>
+         </radialGradient>
+         <path fill="url(#matchGrad)" d="M277.7,319.9c0,0,8.3-0.4,12.7-0.8c4.3-0.3,13-4.1,13-4.1h7.7c0,0,9-1.2,10.3-2.8
+           c1.3-1.7,4.3-4.3,6.7-5.9l6.7-3.5c0,0,4.7-3.4,9.3-4.4s10-1,12,0s6.7,2,8,4.3c1.3,2.3,3.7,7.3,2,9c-1.7,1.7-2.3,4-5.3,5
+           c-1.7,2-3.7,3.7-7,4.3c-2,1.3-8.3,2.3-9.3,2s-9.3,1.7-10.3,0.7s-5-2-8.7,0c-3.7,2-13.7,4-17.7,5s-14,3-18,5.3s-12.3,4.3-16.7,6
+           c-4.3,1.7-22,8.1-15,4.7C301,323.5,277.7,319.9,277.7,319.9z"/>
+       </g>   -->
+        
+         <!-- <mask id="flameMask">
+       
+           </mask> -->
+         <g class="pContainer" filter="url(#goo)"></g>
+         <!-- <g class="flameGroup" filter="url(#glow)">
+         <rect mask="url(#flameMask)" width="100%" height="100%" fill="url(#bgGrad)"/>
+         </g> -->
+       </svg>
+        
+         
+       </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+  <script src="./greensock2.1.3/src/uncompressed/plugins/MorphSVGPlugin.js"></script>
+  <script src="./greensock2.1.3/src/uncompressed/plugins/Physics2DPlugin.js"></script>
+  <script>
+    var xmlns = "http://www.w3.org/2000/svg",
+    xlinkns = "http://www.w3.org/1999/xlink"
+  select = function(s) {
+    return document.querySelector(s);
+  },
+  selectAll = function(s) {
+    return document.querySelectorAll(s);
+  },
+  container = select('.container'),
+  flameMask = select('#flameMask'),
+  pContainer = select('.pContainer'),
+    explosionParticleArray = []
+
+
+//center the container cos it's pretty an' that
+TweenMax.set(container, {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  xPercent: -50,
+  yPercent: -50
+})
+TweenMax.set('svg', {
+  visibility:'visible'
+})
+
+
+
+TweenMax.set('.flameGroup', {
+  rotation:-13,
+  y:15,
+  transformOrigin:'50% 50%'
+})
+var tl = new TimelineMax();
+
+
+var i = 100, p;
+while (--i > -1) {
+
+  p = document.createElementNS(xmlns, 'use');
+  pContainer.appendChild(p);
+
+  p.setAttributeNS(xlinkns, "xlink:href", '#dot');
+  // p.setAttribute('class', "particle");
+  
+
+  // explosionParticleArray.push(p);
+  //set the particles' transform origin to be in the middle
+  TweenMax.set(p, {
+    transformOrigin: '50% 50%',
+    x:50,
+    y:10,
+    scaleX:2,
+    scaleY:5
+  })
+        
+        
+var particleTl = new TimelineMax();
+  particleTl.to(p, randomBetween(1, 4), {
+          // paused:true,
+          physics2D: {
+            velocity: randomBetween(10, 70),
+            angle: randomBetween(-80, -110),
+            gravity: 0
+          },
+
+          scale:1,
+          repeat:-1
+        });
+  
+  tl.add(particleTl, i/20)        
+        
+}
+
+tl.seek(100).timeScale(1.82)
+
+
+
+// TweenMax.to('.matchSide',6, {
+//   repeat:-1, 
+//   onUpdate:flicker
+// })
+
+// function flicker(){
+  
+//   TweenMax.set('#glowBg', {
+//     alpha:randomBetween(0,1)/10
+//   })
+  
+//   var brightness= (Math.random() * 45) - 5;
+//   var brightness = randomBetween(5,15)
+//   TweenMax.set('.matchSide', {
+//     alpha:randomBetween(4,6)/10
+//   })
+// }
+
+//ScrubGSAPTimeline(tl)
+
+// flameMask.appendChild(pContainer)
+
+function randomBetween(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+}
+  </script>
+</body>
+</html>

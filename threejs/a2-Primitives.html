@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html, body {
+      margin: 0;
+    }
+    #c {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
+  <script>
+    'use strict';
+
+    function main() {
+      const canvas = document.querySelector('#c');
+      const renderer = new THREE.WebGLRenderer({canvas});
+
+      const fov = 40;
+      const aspect = 2;
+      const near = 0.1;
+      const far = 200;
+      const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+      camera.position.z = 120;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xAAAAAA);
+
+      const boxWidth = 1;
+      const boxHeight = 1;
+      const boxDepth = 1;
+      const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+
+      //add light
+      const color = 0xFFFFFF;
+      const intensity = 1;
+      const light = new THREE.DirectionalLight(color, intensity);
+      light.position.set(-1, 2, 4);
+      scene.add(light);
+
+
+      //
+      const objects = [];
+      const spread = 15;
+
+      function addObject(x, y, mesh) {
+        mesh.position.x = x * spread;
+        mesh.position.y = y * spread;
+
+        scene.add(mesh);
+        objects.push(mesh);
+      }
+
+      function createMaterial() {
+        const material = new THREE.MeshPhongMaterial({
+          side: THREE.DoubleSide
+        });
+
+        const hue = Math.random();
+        const saturation = 1;
+        const luminance = 0.5;
+        material.color.setHSL(hue, saturation, luminance);
+
+        return material;
+      }
+
+      function addSolidGeometry(x, y, geometry) {
+        const mesh = new THREE.Mesh(geometry, createMaterial());
+        addObject(x, y, mesh);
+      }
+
+      {
+        const width = 8;
+        const height = 8;
+        const depth = 8;
+        const geometry = new THREE.BoxBufferGeometry(width, height, depth);
+        addSolidGeometry(0, 0, geometry);
+      }
+
+      {
+        const loader = new THREE.FontLoader();
+        loader.load('https://threejsfundamentals.org/threejs/resources/threejs/fonts/helvetiker_regular.typeface.json', (font) => {
+          const geometry = new THREE.TextBufferGeometry('three.js', {
+            font: font,
+            size: 3.0,
+            height: .2,
+            curveSegments: 12,
+            bevelEnabled: true,
+            bevelThickness: 0.15,
+            bevelSize: .3,
+            bevelSegments: 5,
+          });
+
+          const mesh = new THREE.Mesh(geometry, createMaterial());
+          geometry.computeBoundingBox();
+          geometry.boundingBox.getCenter(mesh.position).multiplyScalar(-1);
+          // console.log(geometry.boundingBox.getCenter(mesh.position))
+          // console.log(geometry.boundingBox.getCenter(mesh.position).multiplyScalar(-1))
+          const parent = new THREE.Object3D();
+          parent.add(mesh);
+
+          addObject(1, 0, parent);
+        });
+      }
+
+
+
+
+
+      function resizeRendererToDisplaySize(renderer) {
+        const canvas = renderer.domElement;
+        const pixelRatio = window.devicePixelRatio;
+        const width = canvas.clientWidth * pixelRatio;
+        const height = canvas.clientHeight * pixelRatio;
+        const needResize = canvas.width !== width || canvas.height !== height;
+        if (needResize) {
+          renderer.setSize(width, height, false);
+        }
+        return needResize;
+      }
+
+      function render(time) {
+        //apsect is only going to change if the canvas's display size changed 
+        if (resizeRendererToDisplaySize(renderer)) {
+          const canvas = renderer.domElement;          
+          camera.aspect = canvas.clientWidth / canvas.clientHeight;
+          camera.updateProjectionMatrix();
+        }
+
+        time *= 0.001;
+        objects.forEach((object) => {
+          object.rotation.x = time;
+          object.rotation.y = time;
+        })
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+
+      }
+      main();
+
+
+  </script>
+</body>
+</html>

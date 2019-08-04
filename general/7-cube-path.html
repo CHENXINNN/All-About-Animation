@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: 62.5%;
+    }
+    body {
+      font-size: 1.6rem;
+      background-color: hsl(0, 0%, 10%)
+    }
+    
+    .scene {
+      width: 20rem;
+      height: 20rem;
+      margin: 10rem auto;
+      perspective: 1200px;
+    }
+    .cube {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      transform-style: preserve-3d;
+      animation: rotate 5s linear infinite;
+    }
+    .cube__face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      line-height: 20rem;
+      font-size: 3rem;
+      opacity: .8;
+    }
+    .cube__face--front {
+      background-color: transparent;
+      transform: rotateY(0deg) translateZ(10rem);
+    }
+    .cube__face--back {
+      background-color: transparent;
+      transform: rotateY(180deg) translateZ(10rem);
+    }
+    .cube__face--right {
+      background-color: transparent;
+      transform: rotateY(90deg) translateZ(10rem);
+    }
+    .cube__face--left {
+      background-color: transparent;
+      transform: rotateY(-90deg) translateZ(10rem);
+    }
+    .cube__face--top {
+      background-color: transparent;
+      transform: rotateX(90deg) translateZ(10rem);
+    }
+    .cube__face--bottom {
+      background-color: transparent;
+      transform: rotateX(-90deg) translateZ(10rem);
+    }
+    @keyframes rotate {
+      0% {
+        transform: rotate3d(1, 1, 0, 360deg);
+      }
+      50% {
+        transform: rotate3d(1, 1, 0, 180deg);
+      }
+      100% {
+        transform: rotate3d(0, 0, 0, 0);
+      }
+    }
+    svg {
+      width: 100%;
+    }
+    .svg-face {
+      fill:none;
+      stroke:whitesmoke;
+      stroke-width: 20;  
+      stroke-dasharray: 668;
+
+      animation: drawSVG 5s linear infinite alternate;
+      stroke-dashoffset: 668;
+    }
+
+    @keyframes drawSVG {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scene">
+    <div class="cube">
+      <div class="cube__face cube__face--front">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167 167">
+          <path class="svg-face" d="M167,0V167H0V0H167"transform="rotate(180,83.5,83.5)"/> 
+        </svg>
+      </div>
+      <div class="cube__face cube__face--back">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167 167">
+          <path class="svg-face" d="M167,0H0V167H167V0" transform="rotate(-90,83.5,83.5)"/>
+        </svg>
+      </div>
+      <div class="cube__face cube__face--right">
+        <svg class="svg-negative-face" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167 167">
+          <path class="svg-face" d="M167,0H0V167H167V0"/>
+        </svg>
+      </div>
+      <div class="cube__face cube__face--left">
+        <svg class="svg-positive-face" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167 167">
+          <path class="svg-face" d="M167,0V167H0V0H167"transform="rotate(90,83.5,83.5)"/> 
+        </svg>
+      </div>
+      <div class="cube__face cube__face--top">
+        <svg class="svg-negative-face" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167 167">
+          <path class="svg-face" d="M167,0H0V167H167V0"/>
+        </svg>
+      </div>
+      <div class="cube__face cube__face--bottom">
+        <svg class="svg-positive-face" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167 167">
+          <path class="svg-face" d="M167,0V167H0V0H167"transform="rotate(270,83.5,83.5)"/> 
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

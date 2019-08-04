@@ -47,10 +47,11 @@
       color: black;
       transform: rotateY(180deg);
     }
-
-    .card:hover {
+    .rotate {
       transform: rotateY(180deg);
     }
+
+
     
   </style>
 </head>
@@ -62,5 +63,12 @@
     </div>
     <p>Hover to flip the card</p>
   </div>
+  <script>
+    const card = document.querySelector('.card');
+    card.addEventListener('click', handleClick);
+    function handleClick() {
+      card.classList.toggle('rotate');
+    }
+  </script>
 </body>
 </html>

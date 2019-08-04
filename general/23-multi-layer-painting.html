@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .scene {
+      width: 375px;
+      height: 667px;
+      background-color: steelblue;
+      perspective: 600px;
+    }
+    .card {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform .6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .layer1 {
+      background: center / contain url("https://cdn.nlark.com/yuque/0/2019/png/243770/1564813462382-assets/web-upload/d0f96dfd-67f0-44e5-b3db-f4ef93376e83.png");
+      transform: translateZ(-200px);
+    }
+    .layer2 {
+      background: center / contain url("https://cdn.nlark.com/yuque/0/2019/png/243770/1564813462392-assets/web-upload/d84a49ad-1a0e-44e5-bf52-c4554825d85f.png");
+      transform: translateZ(-100px);
+    }
+    .layer3 {
+      background: center / contain url("https://cdn.nlark.com/yuque/0/2019/png/243770/1564813462416-assets/web-upload/61502c34-ffda-4d26-bb3d-8bb552e113b8.png");
+      transform: translateZ(-50px);
+    }
+    .layer4 {
+      background: center / contain url("https://cdn.nlark.com/yuque/0/2019/png/243770/1564813462449-assets/web-upload/e4b51996-9d82-4f39-9172-9044c0dcf8d0.png");
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="card">
+      <div class="layer layer1"></div>
+      <div class="layer layer2"></div>
+      <div class="layer layer3"></div>
+      <div class="layer layer4"></div>
+    </div>
+  </div>
+  <script>
+    const card = document.querySelector('.card');
+    const scene = document.querySelector('.scene');
+    
+    const cardWidth = card.offsetWidth;
+    const cardHeight = card.offsetHeight;
+
+    let mouseLeaveDelay = null;
+    let mouseX, mouseY;
+    mouseX = mouseY = 0;
+    
+    card.addEventListener('mousemove', handleMouseMove);
+    card.addEventListener('mouseleave', handleMouseLeave);
+    card.addEventListener('mouseenter', handleMouseEnter);
+
+    card.addEventListener('touchmove', handleTouchMove);
+    card.addEventListener('touchstart', handleTouchStart);
+    card.addEventListener('touchend', handleTouchEnd);
+
+    function handleMouseMove(e) {
+      mouseX = e.pageX - scene.offsetLeft - cardWidth/2;
+      mouseY = e.pageY - scene.offsetTop - cardHeight/2;
+      changeStyle(mouseX, mouseY);
+    }
+
+    function handleMouseLeave() {
+      mouseLeaveDelay = setTimeout(() => {
+        mouseX = 0;
+        mouseY = 0;
+        changeStyle(mouseX, mouseY);
+      }, 500)
+    }
+
+    function handleMouseEnter() {
+      clearTimeout(mouseLeaveDelay);
+    }
+
+    function handleTouchStart(e) {
+      window.removeEventListener('deviceorientation', handleDeviceorientation);
+      e.preventDefault();
+      clearTimeout(mouseLeaveDelay);
+    }
+
+    function handleTouchMove(e) {
+      e.preventDefault();
+      mouseX = e.pageX - scene.offsetLeft - cardWidth/2;
+      mouseY = e.pageY - scene.offsetTop - cardHeight/2;
+      changeStyle(mouseX, mouseY);
+    }
+
+    function handleTouchEnd(e) {
+      e.preventDefault();
+      mouseLeaveDelay = setTimeout(() => {
+        mouseX = 0;
+        mouseY = 0;
+        changeStyle(mouseX, mouseY);
+        window.addEventListener('deviceorientation', handleDeviceorientation);
+      }, 500)
+    }
+
+    function changeStyle(mouseX, mouseY) {
+      mousePX = mouseX / cardWidth;
+      mousePY = mouseY / cardHeight;
+      const rX = mousePX * 30;
+      const rY = mousePY * -30;
+      const tX = mousePX * -40;
+      const tY = mousePY * -40;   
+      card.style.transform = `rotateX(${rY}deg) rotateY(${rX}deg)`;
+    }
+
+    window.addEventListener('deviceorientation', handleDeviceorientation);
+
+    function handleDeviceorientation() {
+      card.style.transform = `rotateX(${-event.beta / 1.2}deg) rotateY(${-event.gamma / 1.2}deg)`;    
+    }
+
+
+
+
+
+  </script>
+</body>
+</html>

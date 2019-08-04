@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #EAE2D5;
+    }
+    p {
+      position: fixed;
+      margin: 10px;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      font-size: 14px;
+    }
+    a {
+      color: #D22E43;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+    <canvas class="zdog-canvas" width="450" height="500"></canvas>
+    <p>Designed by <a href="https://www.deviantart.com/hedorah/art/Isometric-Animals-336351417?utm_content=bufferfecf1&utm_medium=social&utm_source=pinterest.com&utm_campaign=buffer" target="blank">Hedorah</a></p>
+
+    <script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script>
+      'use strict';
+
+      const canvas = document.querySelector('.zdog-canvas');
+
+      // change radians to Degrees
+      function deg(angle) {
+        return angle / 180 * Math.PI
+      }
+
+      const pinkl = '#D55566'; // light pink
+      const pink = '#D22E43'; // pink
+      const pinkd = '#AE0730'; // dark pink
+
+      const grayl = '#FFF';
+      const gray = '#EFEFEF';
+      const grayd = '#D8D8D8';
+
+      const blue = '#5FD2EF';
+      const blued = '#0092AF';
+
+      
+      const animationObject = {
+        leftWingRotationZ: 0,
+        rightWingRotationZ: 0,
+        headRotationZ: 0,
+        eyeHeight: 8,
+        wave1Diameter: 10,
+        wave2Diameter: 10, 
+        wave1Color: 'white',
+        wave2Color: 'white',
+      };
+      const scene = new Zdog.Illustration({
+        element: '.zdog-canvas',
+        dragRotate: true,
+        resize: 'fullscreen',
+        zoom: 0.8,
+        translate: {y: -50},
+        onResize: function( width, height ) {
+          let minSize = Math.min( width, height );
+          this.zoom = minSize / 800;
+        },
+      });
+      const water = new Zdog.Cylinder({
+        addTo: scene,
+        diameter: 1050,
+        length: 10,
+        stroke: false,
+        color: blued,
+        backface: blue,
+        translate: {y: 170},
+        rotate: {x: `${deg(90)}`},
+      });
+      function createFlamingo(x=0, y=0, z=0, ry=0, scale=1) {
+        const body = new Zdog.Box({
+          addTo: scene,
+          width: 120,
+          height: 120,
+          depth: 120,
+          stroke: false,
+          color: pink,
+          frontFace: pinkl,
+          rearFace: pinkl,
+          leftFace: pinkd,
+          rightFace: pinkd,
+          translate: {x: x, y: y, z: z},
+          rotate: {y: ry},
+          scale: scale,
+        });
+        const leftWingAnchor = new Zdog.Anchor({
+          addTo: body,
+          translate: {x: 60},
+        });
+        const leftWing = new Zdog.Box({
+          addTo: leftWingAnchor,
+          width: 40,
+          height: 10,
+          depth: 80,
+          stroke: false,
+          color: pink,
+          frontFace: pinkl,
+          rearFace: pinkl,
+          leftFace: pinkd,
+          rightFace: pinkd,
+          translate: {x: 20},
+        });
+        const rightWingAnchor = new Zdog.Anchor({
+          addTo: body,
+          translate: {x: -60},
+        });
+        const rightWing = new Zdog.Box({
+          addTo: rightWingAnchor,
+          width: 40,
+          height: 10,
+          depth: 80,
+          stroke: false,
+          color: pink,
+          frontFace: pinkl,
+          rearFace: pinkl,
+          leftFace: pinkd,
+          rightFace: pinkd,
+          translate: {x: -20},
+        });
+        const leg = new Zdog.Box({
+          addTo: body,
+          width: 6,
+          height: 270,
+          depth: 6,
+          stroke: false,
+          color: '#E3B5B6',
+          frontFace: '#E3B5B6',
+          rearFace: '#E3B5B6',
+          rightFace: '#DB969D',
+          leftFace: '#DB969D',
+          translate: {y: 195, z: -20},
+        });
+        const neckBottom = new Zdog.Box({
+          addTo: body,
+          width: 15,
+          height: 15,
+          depth: 120,
+          stroke: false,
+          color: pink,
+          frontFace: pinkl,
+          rearFace: pinkl,
+          leftFace: pinkd,
+          rightFace: pinkd,
+          translate: {z: 120, y: 30},
+        });
+        const neckMid = new Zdog.Box({
+          addTo: neckBottom,
+          width: 15,
+          height: 270,
+          depth: 15,
+          stroke: false,
+          color: pink,
+          frontFace: pinkl,
+          rearFace: pinkl,
+          leftFace: pinkd,
+          rightFace: pinkd,
+          translate: {z: 52.5, y: -142.5},
+        });
+        const neckTop = new Zdog.Box({
+          addTo: neckMid,
+          width: 15,
+          height: 15,
+          depth: 60,
+          stroke: false,
+          color: pink,
+          frontFace: pinkl,
+          rearFace: pinkl,
+          leftFace: pinkd,
+          rightFace: pinkd,
+          translate: {y: -135, z: 22.5},
+        });
+        const head = new Zdog.Box({
+          addTo: neckTop,
+          width: 50,
+          height: 46,
+          depth: 50,
+          stroke: false,
+          color: pink,
+          frontFace: pinkl,
+          rearFace: pinkl,
+          leftFace: pinkd,
+          rightFace: pinkd,
+          translate: {z: 40},
+        });
+        const face = new Zdog.Box({
+          addTo: head,
+          width: 51,
+          height: 15,
+          depth: 30,
+          stroke: 1,
+          color: 'white',
+          topFace: false,
+          bottomFace: false,
+          rearFace: false,
+          frontFace: gray,
+          rightFace: grayd,
+          translate: {z: 12},
+        });
+        const eyes = new Zdog.Box({
+          addTo: face,
+          width: 52,
+          height: 8,
+          depth: 8,
+          stroke: false,
+          color: 'black',
+          topFace: false,
+          bottomFace: false,
+          rearFace: false,
+          frontFace: false,
+        });
+        const mouth = new Zdog.Box({
+          addTo: head,
+          width: 28,
+          height: 28,
+          depth: 40,
+          stroke: 1,
+          color: gray,
+          frontFace: grayl,
+          topFace: gray,
+          rightFace: grayd,
+          leftFace: grayd,
+          rearFace: false,
+          translate: {z: 45, y: 9},
+        });
+        const lip = new Zdog.Box({
+          addTo: mouth,
+          width: 30,
+          height: 3,
+          depth: 35,
+          stroke: false,
+          color: 'black',
+          frontFace: false,
+          rearFace: false,
+          topFace: false,
+          bottomFace: false,
+          translate: {z: 5, y: 5},
+        });
+
+        const beak1 = new Zdog.Box({
+          addTo: mouth,
+          width: 28,
+          height: 26,
+          depth: 6,
+          color: 'black',
+          translate: {z: 23, y: 1},
+        });
+        const beak2 = new Zdog.Box({
+          addTo: beak1,
+          width: 28,
+          height: 22,
+          depth: 6,
+          color: 'black',
+          translate: {z: 6, y: 3},
+        });
+        const beak3 = new Zdog.Box({
+          addTo: beak2,
+          width: 28,
+          height: 18,
+          depth: 6,
+          color: 'black',
+          translate: {z: 6, y: 3},
+        });
+        const beak4 = new Zdog.Box({
+          addTo: beak3,
+          width: 28,
+          height: 14,
+          depth: 6,
+          color: 'black',
+          translate: {z: 6, y: 3},
+        });
+        const beak5 = new Zdog.Box({
+          addTo: beak4,
+          width: 28,
+          height: 10,
+          depth: 6,
+          color: 'black',
+          translate: {z: 6, y: 3},
+        });
+        const beak6 = new Zdog.Box({
+          addTo: beak5,
+          width: 28,
+          height: 6,
+          depth: 6,
+          color: 'black',
+          translate: {z: 6, y: 3},
+        });
+  
+        // const wave1 = new Zdog.Ellipse({
+        //   addTo: leg,
+        //   diameter: 10,
+        //   stroke: 2,
+        //   color: 'white',
+        //   translate: {y: 135},
+        //   rotate: {x: `${deg(90)}`},
+        // });
+        // const wave2 = new Zdog.Ellipse({
+        //   addTo: leg,
+        //   diameter: 100,
+        //   stroke: 2,
+        //   color: 'white',
+        //   translate: {y: 135},
+        //   rotate: {x: `${deg(90)}`},
+        // });
+        const flamingo = {};
+        flamingo.body = body;
+        return flamingo;
+      }
+      const flamingo1 = createFlamingo(0, 0, 0, 0, 0.5);
+      const flamingo2 = createFlamingo(300, 0, 0, 0, 0.3);
+
+      // const tlEyes = new TimelineMax({repeat: -1, repeatDelay: 2});
+      // tlEyes.to(animationObject, .1, {
+      //   eyeHeight: 1
+      // })
+      // .to(animationObject, 0.1, {
+      //   eyeHeight: 8
+      // })
+      // .to(animationObject, .1, {
+      //   eyeHeight: 1
+      // })
+      // .to(animationObject, 0.1, {
+      //   eyeHeight: 8
+      // })
+
+      // const tlWave1 = new TimelineMax({repeat: -1});
+      // tlWave1.to(animationObject, 6, {
+      //   wave1Diameter: 150,
+      //   wave1Color: blue,
+      // })
+
+      // const tlWave2 = new TimelineMax({repeat: -1});
+      // tlWave2.to(animationObject, 6, {
+      //   wave2Diameter: 150,
+      //   wave2Color: blue,
+      // })
+
+      // const tlHead = new TimelineMax({repeat: -1});
+      // tlHead.to(animationObject, 0.1, {
+      //   headRotationZ: deg(-20),
+      // })
+      // .to(animationObject, 3, {
+      //   headRotationZ: deg(-20),
+      // })
+      // .to(animationObject, 0.1, {
+      //   headRotationZ: deg(0),
+      // })
+      // .to(animationObject, 3, {
+      //   headRotationZ: deg(0),
+      // })
+      // .to(animationObject, 0.1, {
+      //   headRotationZ: deg(20),
+      // })
+      // .to(animationObject, 3, {
+      //   headRotationZ: deg(20),
+      // })
+
+      // const tlLeftWing = new TimelineMax({repeat: -1, repeatDelay: 6});
+      // tlLeftWing.to(animationObject, .1, {
+      //   leftWingRotationZ: deg(30),
+      // })
+      // .to(animationObject, .1, {
+      //   leftWingRotationZ: deg(-30),
+      // })
+      // .to(animationObject, .1, {
+      //   leftWingRotationZ: deg(30),
+      // })
+      // .to(animationObject, .1, {
+      //   leftWingRotationZ: deg(-30),
+      // })
+      // .to(animationObject, .1, {
+      //   leftWingRotationZ: deg(0),
+      // })
+
+      // const tlRightWing = new TimelineMax({repeat: -1, repeatDelay: 6});
+      // tlRightWing.to(animationObject, .1, {
+      //   rightWingRotationZ: deg(-30),
+      // })
+      // .to(animationObject, .1, {
+      //   rightWingRotationZ: deg(30),
+      // })
+      // .to(animationObject, .1, {
+      //   rightWingRotationZ: deg(-30),
+      // })
+      // .to(animationObject, .1, {
+      //   rightWingRotationZ: deg(30),
+      // })
+      // .to(animationObject, .1, {
+      //   rightWingRotationZ: deg(0),
+      // })
+
+
+      // const tlMaster = new TimelineMax({onUpdate: render});
+      // tlMaster.addLabel("beginning")
+      // .add(tlEyes)
+      // .add(tlWave1, "beginning")
+      // .add(tlWave2, "-=3")
+      // .add(tlHead, "beginning+=1")
+      // .add(tlLeftWing.timeScale(2), "beginning+=2")
+      // .add(tlRightWing.timeScale(2), "beginning+=2")
+
+
+
+
+      // scene.rotate.y = deg(45);
+      // scene.rotate.x = deg(-30);
+
+      function render() {
+        // leftWingAnchor.rotate.z = animationObject.leftWingRotationZ;
+        // rightWingAnchor.rotate.z = animationObject.rightWingRotationZ;
+        // head.rotate.z = animationObject.headRotationZ;
+        // eyes.height = animationObject.eyeHeight;
+        // wave1.diameter = animationObject.wave1Diameter;
+        // wave2.diameter = animationObject.wave2Diameter;
+        // wave1.color = animationObject.wave1Color;
+        // wave2.color = animationObject.wave2Color;
+
+        // eyes.updatePath();
+        // wave1.updatePath();
+        // wave2.updatePath();
+        scene.updateRenderGraph();
+        requestAnimationFrame(render);
+      }
+      render();
+
+    </script>
+  </body>
+</html>

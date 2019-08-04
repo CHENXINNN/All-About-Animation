@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    svg {
+      display: block;
+      border: 1px solid black;
+    }
+    .parent_rect {
+      font-size: 0
+    }
+    .rect {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background-color: pink;
+      margin: 5px;
+    }
+    .rect:first-child {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" 
+     width="500px"
+     viewBox="0 0 500 100">
+  <g fill="steelblue" stroke="none" stroke-width="1">
+    <rect class="svgrect" x="10" y="10" width="50" height="50" />
+    <rect class="svgrect" x="70" y="10" width="50" height="50" />
+    <rect class="svgrect" x="130" y="10" width="50" height="50" />
+    <rect class="svgrect" x="190" y="10" width="50" height="50" />
+  </g>
+  <!-- <path stroke="pink" fill="none" d="M0,0 h120 v120 h-120 v-120" /> -->
+  </svg>
+  <div class="parent_rect">
+    <div class="rect"></div>
+    <div class="rect"></div>
+    <div class="rect"></div>
+    <div class="rect"></div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+<script>
+  const rect = selectAll(".rect");
+  const svgrect = selectAll(".svgrect");
+
+  const tl = new TimelineMax();
+
+  tl.addLabel("beginning")
+    .staggerFrom(rect, 1, {rotation:360}, -0.2, "beginning")
+    .staggerFrom(svgrect, 1, {rotation:360, transformOrigin:"50% 50%"}, -0.2, "beginning")
+
+
+
+  function select(s) {
+    return document.querySelector(s);
+  }
+  function selectAll(s) {
+    return document.querySelectorAll(s);
+  }
+</script>
+</body>
+</html>

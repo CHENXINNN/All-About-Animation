@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      perspective: 1px;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 40px;
+      font-weight: bold;
+      color: whitesmoke;
+    }
+    .slide {
+      position: relative;
+      padding: 25% 10%;
+      height: 100%;
+      box-sizing: border-box;
+      background: center center / cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* .slide::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: center center / cover;
+    } */
+    .slide1 {
+      background-image: url('https://cdn.nlark.com/yuque/0/2019/jpeg/243770/1559110795269-assets/web-upload/fe8e2429-155f-47b8-9e84-a70fdcc66979.jpeg');
+    }
+    .slide3 {
+      background-image: url('https://cdn.nlark.com/yuque/0/2019/jpeg/243770/1559110794627-assets/web-upload/ce571403-3da5-4690-89d6-8ea0f29f7174.jpeg');
+    }
+    .slide5 {
+      background-image: url('https://cdn.nlark.com/yuque/0/2019/jpeg/243770/1559110792233-assets/web-upload/aae5fa8f-12e8-4151-be7c-a67918aeb431.jpeg')
+    }
+    .slide:nth-child(odd) {
+      transform: translateZ(-1px) scale(2);
+      z-index: -1;
+    }
+    .slide:nth-child(even) {
+      z-index: 1;
+      background: white;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="slide slide1">
+    <h1>Pure CSS Parallax Scrolling</h1>
+  </div>
+  <div class="slide slide2">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+    </p>
+  </div>
+  <div class="slide slide3"></div>
+  <div class="slide slide4">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore reprehenderit omnis eius maxime velit eveniet. Ipsum corporis accusantium, sed quis consequatur corrupti recusandae iusto asperiores quisquam officia a vel inventore?
+    </p>
+  </div>
+  <div class="slide slide5"></div>
+</body>
+</html>
